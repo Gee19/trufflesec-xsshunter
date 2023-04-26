@@ -38,5 +38,30 @@ async function send_email_notification(xss_payload_fire_data, email) {
 	console.debug("Message emailed with status %d", response[0].statusCode);
 	return true;
 }
+async function send_slack_notification(xss_payload_fire_data) {
+  const slack_message = {
+    channel: process.env.SLACK_CHANNEL,
+    username: process.env.SLACK_USERNAME,
+    icon_emoji: `:${process.env.SLACK_EMOJI}:`,
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "plain_text",
+          text: `XSS Payload Fired On ${xss_payload_fire_data.url}`,
+        },
+      },
+    ],
+  };
+
+  await axios.post(
+    process.env.SLACK_WEBHOOK_URL,
+    JSON.stringify(slack_message)
+  );
+
+  console.log("Slack message sent: %s", slack_message);
+}
+
+module.exports.send_slack_notification = send_slack_notification;
 
 module.exports.send_email_notification = send_email_notification;

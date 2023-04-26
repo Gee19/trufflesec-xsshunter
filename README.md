@@ -25,6 +25,13 @@ The following are needed if you want email notifications:
 * `SENDGRID_API_KEY`: API key for Sendgrid
 * `SENDGRID_UNSUBSRIBE_GROUP_ID`: Unsubscribe group ID for emails
 
+The following are needed if you want slack notifications:
+
+* `SLACK_NOTIFICATIONS_ENABLED`: Enable to receive slack notifications
+* `SLACK_WEBHOOK_URL`: slack webhook URL
+* `SLACK_CHANNEL`: slack channel that the webhook will post to
+* `SLACK_USERNAME`: Username given to the slack message
+* `SLACK_EMOJI`: Emoji used as the profile picture on Slack
 
 Finally, the following is worth considering for the security conscious:
 

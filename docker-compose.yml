@@ -3,6 +3,12 @@ services:
   # XSS Hunter Express service
   xsshunterexpress:
     build: .
+    environment:
+      - SLACK_NOTIFICATIONS_ENABLED=false
+      - SLACK_WEBHOOK_URL=https://api.slack.com/messaging/webhooks
+      - SLACK_CHANNEL=secalerts
+      - SLACK_USERNAME=xsshunter
+      - SLACK_EMOJI=ggez
     env_file:
       - dev.env
     ports:

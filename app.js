@@ -396,6 +396,10 @@ async function get_app_server() {
           user.email
         );
       }
+      if (process.env.SLACK_NOTIFICATIONS_ENABLED === "true") {
+        payload_fire_data.screenshot_url = `https://${process.env.HOSTNAME}/screenshots/${payload_fire_data.screenshot_id}.png`;
+        await notification.send_slack_notification(payload_fire_data);
+      }
     }
   );
 
